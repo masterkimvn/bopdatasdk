@@ -4,6 +4,12 @@ All notable changes to the **BOP Data SDK repository** are documented here.
 
 This changelog tracks **GitHub source releases**. The SDKs in `packages/` may have independent package names and versions. A GitHub repository release does not imply publication to npm, PyPI, Maven Central, NuGet, Packagist, crates.io, RubyGems, pub.dev, or any other package registry.
 
+## Unreleased — Registry distribution preparation
+
+- Prepared the 11 SDK package manifests with candidate public names, version 1.0.0, metadata, README, and MIT licensing for SDK software.
+- Updated consumer tests and package references to match new identities; package registry publication and verification remain separate.
+- Clarified that SDK software licensing does not grant rights to datasets, their sources, or BOP trademarks.
+
 ## [1.0.0] - 2026-10-28
 
 First public GitHub source release of the BOP Data SDK.

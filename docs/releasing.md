@@ -1,38 +1,35 @@
-# Release and distribution
+# BOP Data SDK — Source and registry release process
 
-## Current GitHub source release
+## GitHub source release
 
-**Repository version:** v1.0.0 (2026-10-28). See [Changelog](../CHANGELOG.md) and [GitHub release notes](releases/v1.0.0.md).
+The original [v1.0.0 source release](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0) is available and remains unchanged. It represents the repository snapshot at the October 28, 2026 tag. Later source commits that prepare registry-specific packages do **not** retroactively change that tag.
 
-The GitHub release is a **source-code snapshot** with eleven read-only BOP Data clients, examples, tests, and documentation. It is **not** a release to public language package registries, and it does not deploy or change the production API at `data.bop.ink`.
+## Independent language packages
 
-The existing package manifests deliberately retain local/development names and version numbers. Repository tag `v1.0.0` **does not** change the language-specific package version values, imply registry availability, or certify untested mobile builds.
+This repository now contains proposed first registry package metadata for eleven SDKs, with MIT licensed SDK code. That is **not** proof that the packages have been published to public registries.
 
-## Get the tagged source
+Read [registry status and first-publish checklist](registry-status.md). Each publish workflow is separately gated by an explicit human confirmation or a package-specific tag. Create the protected GitHub environment `registry-publish` with reviewers before adding any publication secrets.
 
-```bash
-git clone --branch v1.0.0 --depth 1 https://github.com/masterkimvn/bopdatasdk.git
-cd bopdatasdk
-```
+- **npm:** First claim/publish the package under the owner account. Then configure npm Trusted Publisher (`publish-javascript.yml`) and run the workflow manually. Confirm npm CLI and Node versions support OIDC.
+- **PyPI:** Register a pending Trusted Publisher (`publish-python.yml`, GitHub repository `masterkimvn/bopdatasdk`, environment `registry-publish`) and run the workflow manually.
+- **RubyGems:** Register a pending Trusted Publisher (`publish-ruby.yml`, same GitHub repo/environment) and run the workflow manually.
+- **NuGet / crates.io:** Set the narrowly scoped `NUGET_API_KEY` / `CRATES_IO_TOKEN` secret and manually invoke the respective publishing workflow.
+- **Maven Central:** Verify ownership of the `ink.bop` namespace and establish a Sonatype Central Portal account. Supply signed release credentials via GitHub environment secrets. The Maven workflow **submits** for manual portal validation/approval; Java and Kotlin artifacts must be inspected.
+- **pub.dev:** The **first** release must be published manually. Later releases can use OIDC from a GitHub tag matching `packages/dart/v{{version}}` and the `publish-dart.yml` workflow.
+- **Go:** The nested module needs a scoped tag `packages/go/v1.0.0` on an approved commit, not the root `v1.0.0` tag. Confirm the module resolves through Go proxy before advertising it.
+- **PHP / Swift:** Export their directories with `bash scripts/export-package.sh php|swift /tmp/output` and create public mirrors where their manifests are at repository root; tags and mirror registration follow after owner review.
 
-Use [client installation instructions](clients.md) and [examples](examples.md) to run a client locally. No BOP Data API key is needed.
+## Release quality gate
 
-## CI and GitHub release
+For every package:
 
-The v1.0.0 GitHub release is created only after the `CI` workflow passes for the main-branch source commit. The one-time release workflow checks that the successful CI commit is the current `main` head before creating the tag and release.
+1. Confirm registry account ownership and proposed package name availability.
+2. Build/inspect artifact with package-specific tools and [registry preflight](../.github/workflows/registry-preflight.yml).
+3. Run relevant SDK and installed-consumer tests with synthetic API fixtures.
+4. Explicitly publish, then independently verify the exact version and clean-install from the public registry.
+5. Fetch a real catalog/dataset when network connectivity allows, and document limitations without claiming correctness audits.
+6. Only after verifying installation, update README with public installation commands and registry links.
 
-For later releases, update `CHANGELOG.md`, the release notes, and the repository version first; run and confirm CI, then use an explicitly approved release procedure. Do not assume the v1.0.0 one-time workflow handles future versions.
+## Rights and attribution
 
-## Separate approval required before public registry publication
-
-- Final SDK source license and copyright information. **No public-use license is granted merely by source visibility.**
-- Package names/namespaces and ownership for each target registry.
-- Individual package versioning, package metadata, and integrity checks.
-- Registry authentication and narrowly scoped publishing permissions.
-- Installation and smoke checks from each registry after publication.
-
-Build and inspect source packages independently: `npm pack --dry-run` (JavaScript), `python -m build` (Python), Composer validation (PHP), `go test ./...` and `go vet ./...` (Go), plus each other language's documented checks. Validate package artifacts in clean consumer environments before registry publication.
-
-For a Go release, the nested module may require its own appropriately prefixed tag, e.g. `packages/go/v1.0.0`. The root `v1.0.0` tag does **not** publish that Go module version.
-
-SDK source rights are separate from the rights associated with any dataset's content and original sources. Read [data rights](data-rights.md).
+[MIT](../LICENSE) covers **SDK code**, not datasets, original sources, or branding. Credit **BOP Data** as source when using datasets (link appreciated but optional for this project request). Follow original dataset-specific terms. See [license scope](license-scope.md).

@@ -1,0 +1,33 @@
+name: Registry packaging preflight
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'packages/**'
+      - 'examples/flutter/**'
+      - 'tests/consumer.sh'
+      - '.github/workflows/registry-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade build twine
+      - run: python3 scripts/check-registry-metadata.py
+      - name: Package JavaScript
+        run: |
+          npm --prefix packages/javascript test
+          cd packages/javascript
+          npm pack --dry-run
+      - name: Package Python
+        run: |
+          python -m build packages/python --outdir /tmp/bop-python-dist
+          python -m twine check /tmp/bop-python-dist/*

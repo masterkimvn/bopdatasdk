@@ -1,3 +1,13 @@
-# Rust client
+# BOP Data SDK for Rust
 
-This crate is under development and not published. It provides blocking catalog, dataset and raw CSV requests. Use `Client::default()` or configure `Client::new(base_url, timeout)`. Responses are `serde_json::Value` and retain unknown fields. The default response limit is 8 MB. Run `cargo test` to verify locally.
+Read-only client for [BOP Data](https://data.bop.ink). After crates.io publication: `cargo add bop-data-sdk`.
+
+```rust
+use bop_data_sdk::Client;
+let client = Client::default();
+let catalog = client.list_datasets()?;
+let id = catalog["datasets"][0]["canonicalId"].as_str().unwrap();
+println!("{}", client.get_dataset(id)?["data"]);
+```
+
+MIT software license; dataset terms separate. Please credit source as **BOP Data**.

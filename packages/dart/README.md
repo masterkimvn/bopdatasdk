@@ -1,3 +1,22 @@
-# Dart client
+# BOP Data SDK for Dart / Flutter
 
-Source package under development; not published. Run `dart pub get`, `dart test`, and `dart run example/main.dart`. Methods `listDatasets`, `getDataset`, and `getDatasetCsv` return JSON maps or raw CSV bytes. Requests use a 10-second default timeout and an 8 MB response limit. Browser use requires provider CORS permission; native/server use does not use browser CORS.
+Read-only connector to [BOP Data](https://data.bop.ink), the non-profit, ad-free structured dataset initiative.
+
+After the first version has actually been published on pub.dev: `dart pub add bop_data_sdk`.
+
+```dart
+import 'package:bop_data_sdk/bop_data.dart';
+
+Future<void> main() async {
+  final client = BopDataClient();
+  try {
+    final catalog = await client.listDatasets();
+    final data = await client.getDataset(catalog['datasets'][0]['canonicalId']);
+    print(data['data']);
+  } finally {
+    client.close();
+  }
+}
+```
+
+CSV is returned as bytes; browser cross-origin use requires CORS. Credit source datasets as **BOP Data**. SDK software is MIT licensed; dataset rights differ.

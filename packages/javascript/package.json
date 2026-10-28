@@ -1,1 +1,47 @@
-{"name":"bop-data-sdk-local","version":"0.1.0","type":"module","files":["index.js","index.d.ts"],"exports":{".":{"types":"./index.d.ts","import":"./index.js"}},"scripts":{"test":"node --test test.js","build":"node --check index.js"},"engines":{"node":">=18"},"private":true}
+{
+  "name": "bop-data-sdk",
+  "version": "1.0.0",
+  "description": "Read-only BOP Data public structured datasets client",
+  "type": "module",
+  "license": "MIT",
+  "author": "Phạm Hoàng Đức (Master Kim)",
+  "homepage": "https://data.bop.ink",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masterkimvn/bopdatasdk.git",
+    "directory": "packages/javascript"
+  },
+  "bugs": {
+    "url": "https://github.com/masterkimvn/bopdatasdk/issues"
+  },
+  "keywords": [
+    "bop-data",
+    "dataset",
+    "structured-data",
+    "csv",
+    "open-data"
+  ],
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
+  },
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "node --test test.js",
+    "build": "node --check index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

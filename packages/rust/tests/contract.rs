@@ -1,4 +1,4 @@
-use bop_data_sdk_local::{Client, Error};
+use bop_data_sdk::{Client, Error};
 use std::{
     io::{Read, Write},
     net::TcpListener,

@@ -1,0 +1,51 @@
+name: Submit Java or Kotlin SDK to Maven Central
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Java or Kotlin
+        required: true
+        type: choice
+        options: [java, kotlin]
+      confirm:
+        description: Type SUBMIT after verifying ink.bop namespace, signing and Central credentials
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  central:
+    if: github.repository == 'masterkimvn/bopdatasdk' && github.ref == 'refs/heads/main' && inputs.confirm == 'SUBMIT'
+    environment: registry-publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Import signing key
+        env:
+          MAVEN_GPG_PRIVATE_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        run: |
+          test -n "$MAVEN_GPG_PRIVATE_KEY" || { echo "Signing key missing"; exit 1; }
+          printf '%s' "$MAVEN_GPG_PRIVATE_KEY" | gpg --batch --import
+      - name: Configure Central account token
+        env:
+          CENTRAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+        run: |
+          test -n "$CENTRAL_TOKEN_USERNAME" && test -n "$CENTRAL_TOKEN_PASSWORD"
+          mkdir -p ~/.m2
+          chmod 700 ~/.m2
+          printf '<settings><servers><server><id>central</id><username>${env.CENTRAL_TOKEN_USERNAME}</username><password>${env.CENTRAL_TOKEN_PASSWORD}</password></server></servers></settings>\n' > ~/.m2/settings.xml
+          chmod 600 ~/.m2/settings.xml
+      - name: Submit bundle; require manual release approval on Central Portal
+        env:
+          CENTRAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
+          CENTRAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        working-directory: packages/${{ inputs.package }}
+        run: mvn -B -Pcentral-release -Dgpg.passphrase="$MAVEN_GPG_PASSPHRASE" deploy

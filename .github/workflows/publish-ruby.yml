@@ -1,0 +1,33 @@
+name: Publish Ruby SDK to RubyGems
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type PUBLISH after registering the RubyGems pending Trusted Publisher
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  gem:
+    if: github.repository == 'masterkimvn/bopdatasdk' && github.ref == 'refs/heads/main' && inputs.confirm == 'PUBLISH'
+    environment: registry-publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - run: ruby packages/ruby/test/client_test.rb
+      - name: Pack Ruby gem
+        working-directory: packages/ruby
+        run: gem build bop_data_sdk.gemspec
+      - uses: rubygems/configure-rubygems-credentials@v2.1.0
+      - name: Push Ruby gem
+        working-directory: packages/ruby
+        run: gem push bop-data-sdk-1.0.0.gem

@@ -1,3 +1,5 @@
-# Java client
+# BOP Data SDK for Java
 
-This package is under development and not published. Requires Java 11 or later and Maven. Build with `mvn test package`; use `ink.bop.data.Client` and call `listDatasets`, `getDataset`, or `getDatasetCsv`. JSON responses are Jackson `JsonNode` objects, preserving additional fields; CSV returns raw bytes. See `examples/java/Main.java`.
+Java 11+ read-only client for [BOP Data](https://data.bop.ink). Source build: `mvn test package`. Class: `ink.bop.data.Client`.
+
+Planned Maven coordinates: `ink.bop:data-sdk:1.0.0` (not published until namespace and Central account verification). Acknowledge source as **BOP Data**. SDK MIT; dataset rights separate.

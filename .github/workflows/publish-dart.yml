@@ -1,0 +1,38 @@
+name: Publish Dart SDK to pub.dev (after initial manual release)
+on:
+  push:
+    tags:
+      - 'packages/dart/v*'
+permissions:
+  contents: read
+jobs:
+  pub:
+    if: github.repository == 'masterkimvn/bopdatasdk'
+    environment: registry-publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Check tag matches package version
+        shell: bash
+        run: |
+          expected="${GITHUB_REF_NAME#packages/dart/v}"
+          actual="$(sed -n 's/^version: //p' packages/dart/pubspec.yaml)"
+          test "$expected" = "$actual" || { echo "Version mismatch"; exit 1; }
+      - name: Analyze and dry-run publication
+        working-directory: packages/dart
+        run: |
+          dart pub get
+          dart analyze
+          dart test
+          dart pub publish --dry-run
+      - name: Publish with pub.dev OIDC
+        working-directory: packages/dart
+        run: dart pub publish --force

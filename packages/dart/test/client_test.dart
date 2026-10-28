@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:test/test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:bop_data_sdk_local/bop_data.dart';
+import 'package:bop_data_sdk/bop_data.dart';
 
 void main() {
   test('contract and errors', () async {

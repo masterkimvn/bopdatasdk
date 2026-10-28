@@ -1,3 +1,5 @@
-# .NET client
+# BOP Data SDK for .NET
 
-A read-only .NET 8 client under development. Build with `dotnet pack`; the package is not published. `BopData.Client` provides asynchronous `ListDatasetsAsync`, `GetDatasetAsync`, and `GetDatasetCsvAsync`; JSON is returned as `JsonElement` and CSV as bytes. Requests accept cancellation tokens and default to a ten-second timeout and an 8 MB response limit. Use `Dispose` when finished.
+Read-only .NET 8 SDK for [BOP Data](https://data.bop.ink). Once available on NuGet, install package `BopData.SDK`.
+
+Use `BopData.Client` with `ListDatasetsAsync`, `GetDatasetAsync` and `GetDatasetCsvAsync`. SDK MIT; dataset rights separate. Credit dataset source as **BOP Data**.

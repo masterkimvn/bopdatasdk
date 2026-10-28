@@ -1,3 +1,5 @@
-# Kotlin client
+# BOP Data SDK for Kotlin / Android
 
-A blocking Kotlin/JVM client designed for Android and the JVM. Call it from a background thread on Android and add the INTERNET permission. It provides `listDatasets()`, `getDataset(id)` and `getDatasetCsv(id)`, returning JSON objects or CSV bytes. It uses `org.json`; Android supplies this API, while JVM applications need an `org.json` dependency. The package is in development and has not been published.
+Read-only blocking Kotlin/JVM client for [BOP Data](https://data.bop.ink). Android calls must run on a background thread with INTERNET permission. JVM users need `org.json`.
+
+Planned Maven coordinates: `ink.bop:data-kotlin:1.0.0` (not yet published). SDK MIT licensed; data terms separate. Please credit **BOP Data**.

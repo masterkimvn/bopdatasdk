@@ -1,0 +1,33 @@
+name: Publish Python SDK to PyPI
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type PUBLISH after registering the pending PyPI Trusted Publisher
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  pypi:
+    if: github.repository == 'masterkimvn/bopdatasdk' && github.ref == 'refs/heads/main' && inputs.confirm == 'PUBLISH'
+    environment: registry-publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade build twine
+      - run: PYTHONPATH=packages/python/src python -m unittest discover -s packages/python -v
+      - run: python -m build packages/python --outdir packages/python/dist
+      - run: python -m twine check packages/python/dist/*
+      - name: Publish via PyPI OIDC
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/python/dist/

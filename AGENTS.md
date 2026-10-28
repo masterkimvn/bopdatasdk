@@ -12,7 +12,7 @@ Public guidance for AI coding agents working **with or inside** the [BOP Data SD
 
 ## Current release status
 
-The repository's first GitHub **source release** is [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0). This version refers to the repository snapshot, **not** independent package releases. Local package manifests may still report `0.1.0`, `*-local`, or `-SNAPSHOT`; none of those names should be presented as publicly available registry packages. Source licensing remains pending. See [CHANGELOG.md](CHANGELOG.md) and [docs/releasing.md](docs/releasing.md).
+The repository's first GitHub **source release** is [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0). This version refers to the repository snapshot, **not** independent package releases. That historical tag contains development package identifiers. The later distribution branch proposes independent 1.0.0 package manifests; no registry package should be assumed published until verified. SDK software is MIT licensed; individual dataset rights are separate. See [CHANGELOG.md](CHANGELOG.md) and [docs/releasing.md](docs/releasing.md).
 
 ## When a user asks you to integrate BOP Data
 
@@ -95,7 +95,7 @@ Python in this checkout requires `PYTHONPATH=packages/python/src` unless the loc
 - Run the relevant language tests and examples documented in the repository. Report any platform/toolchain tests you could not run instead of claiming success.
 - Never commit credentials, secrets, local environment files, downloaded datasets with uncertain reuse rights, generated build artifacts, or internal-only workspace files.
 - **Do not publish packages, tag releases, or change production BOP Data** without explicit authorization.
-- The clients currently exist as repository source; public registry releases and the SDK source license are **pending**. Do not instruct users to install unverified registry names or assume an open-source license has already been granted.
+- The clients currently exist as repository source; public registry releases remain **pending**, while the SDK code is MIT licensed. Do not instruct users to install unverified registry names or assume an open-source license has already been granted.
 
 ## Attribution and rights
 
@@ -108,3 +108,7 @@ This is not a substitute for legal permissions. A dataset or its original source
 For an integration task, deliver **working caller-side code** and show how to run it; demonstrate a catalog lookup or a real dataset request when network access is available. Prefer a successful data retrieval over an elaborate architecture or repeated data-source audits.
 
 For a contribution task, explain which files changed and which relevant checks actually ran. Keep documentation honest about platform support and release status.
+
+## Registry distribution
+
+Manifest names have been prepared; **do not claim a registry package exists until the owner confirms publication and clean installation**. See [docs/registry-status.md](docs/registry-status.md) for distribution channels and setup requirements. The root GitHub `v1.0.0` release is not the same as each language's package version.

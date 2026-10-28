@@ -1,3 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><PackageId>BopData.SDK.Local</PackageId><Version>0.1.0</Version><Description>Read-only BOP Data client</Description></PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>BopData.SDK</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Phạm Hoàng Đức (Master Kim)</Authors>
+    <Description>Read-only .NET client for BOP Data public structured datasets.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://data.bop.ink</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/masterkimvn/bopdatasdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>bop-data;dataset;structured-data;csv</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup><None Include="README.md" Pack="true" PackagePath="/" /></ItemGroup>
 </Project>
