@@ -32,3 +32,9 @@ Framework integration snippets are available for [React](../examples/react/READM
 - Kotlin: see `examples/kotlin/Main.kt` and [package instructions](../packages/kotlin/README.md). Android applications should make network calls on a background thread.
 
 - Swift: add `packages/swift` as a local package and use the view in `examples/swift/DatasetView.swift`. iOS simulator operation is not yet verified.
+
+- Android: see [the Android example](../examples/android/GUIDE.md).
+- SwiftUI application: see [the iOS example](../examples/swift/GUIDE.md).
+- PowerShell: `pwsh -File examples/powershell/dataset.ps1`; optionally pass `-CanonicalId` to select a dataset.
+
+For client methods and local installation instructions across all 11 languages, see [Using the clients](clients.md).
