@@ -20,7 +20,7 @@ python3 -m venv "$tmp/venv"
 "$tmp/venv/bin/pip" install --no-deps "$tmp"/dist/*.whl >/dev/null
 (cd "$tmp" && "$tmp/venv/bin/python" -c "from bop_data import BopDataClient; c=BopDataClient('http://127.0.0.1:18765'); assert c.list_datasets()['total']==2 and c.get_dataset('test.one')['provenance']['license']=='synthetic' and c.get_dataset_csv('test.one').startswith('\ufeff')")
 mkdir "$tmp/php"
-printf '{"repositories":[{"type":"path","url":"%s/packages/php","options":{"symlink":false}}],"require":{"bopink/data-sdk":"dev-main"}}\n' "$root" > "$tmp/php/composer.json"
+printf '{"repositories":[{"type":"path","url":"%s/packages/php","options":{"symlink":false,"versions":{"bopink/data-sdk":"1.0.0"}}}],"require":{"bopink/data-sdk":"^1.0"}}\n' "$root" > "$tmp/php/composer.json"
 COMPOSER_ALLOW_SUPERUSER=1 composer install -d "$tmp/php" --no-interaction --no-progress >/dev/null
 cat > "$tmp/php/check.php" <<'PHP'
 <?php
