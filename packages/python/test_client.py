@@ -7,7 +7,7 @@ class Handler(BaseHTTPRequestHandler):
   for code in (404, 429, 503):
    if f'status{code}' in self.path or (code == 404 and 'missing' in self.path): self.send_response(code); self.end_headers(); return
   if 'slow' in self.path:
-   import time; time.sleep(.3)
+   import time; time.sleep(.3); return
   if 'invalid' in self.path or 'wrong' in self.path:
    self.send_response(200); self.end_headers(); self.wfile.write(b'{' if 'invalid' in self.path else b'{"spec":"wrong"}'); return
   self.send_response(200); self.end_headers()

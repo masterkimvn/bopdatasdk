@@ -5,7 +5,7 @@ import socket
 from typing import Any, Optional
 from urllib.parse import quote, urlsplit
 from urllib.error import HTTPError, URLError
-from urllib.request import build_opener, HTTPRedirectHandler
+from urllib.request import build_opener, HTTPRedirectHandler, Request
 
 class _NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -25,7 +25,7 @@ class BopDataClient:
 
     def _request(self, path: str, spec: Optional[str] = None) -> Any:
         try:
-            with build_opener(_NoRedirect()).open(self.base_url + path, timeout=self.timeout) as response:
+            with build_opener(_NoRedirect()).open(Request(self.base_url + path, headers={'User-Agent': 'BOPDataSDK/0.1'}), timeout=self.timeout) as response:
                 body = response.read()
         except HTTPError as e:
             raise BopDataError('http', f'HTTP {e.code}', e.code) from None

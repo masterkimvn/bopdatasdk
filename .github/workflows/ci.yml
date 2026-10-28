@@ -23,8 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: php -S 127.0.0.1:18764 tests/server.php > /tmp/bop-php-server.log 2>&1 &
-      - run: php -d zend.assertions=1 -d assert.exception=1 packages/php/test.php
+      - run: |
+          php -S 127.0.0.1:18764 tests/server.php > /tmp/bop-php-server.log 2>&1 &
+          sleep 1
+          php -d zend.assertions=1 -d assert.exception=1 packages/php/test.php
   go:
     runs-on: ubuntu-latest
     steps:
