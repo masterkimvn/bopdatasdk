@@ -35,3 +35,7 @@ coverage/
 # NOTE: gitignore does not protect files already committed.
 # Verify with: git check-ignore -v work/START_HERE.md
 # Verify no tracked files: git ls-files work
+
+# Build output for additional language packages
+target/
+*.gem

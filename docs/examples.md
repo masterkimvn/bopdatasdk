@@ -8,3 +8,12 @@ From the repository root:
 - Go: `cd packages/go && go run ./examples`
 
 Each example reads the catalog and then fetches its first dataset. Network access to data.bop.ink is required.
+
+Additional source examples:
+
+- Ruby: build and install `packages/ruby/bop_data_sdk.gemspec`, then run `ruby examples/ruby/main.rb` in that environment.
+- Shell: `bash examples/shell/dataset.sh` retrieves the catalog; pass a canonical ID to retrieve JSON. Requires curl.
+- C: `cc examples/c/dataset.c -lcurl -o dataset-c` then `./dataset-c CANONICAL_ID json` (or `csv`). Requires libcurl headers and library.
+- C++: `c++ -std=c++17 examples/cpp/dataset.cpp -lcurl -o dataset-cpp` then `./dataset-cpp CANONICAL_ID json` (or `csv`). Requires libcurl headers and library.
+
+- Java: see `examples/java/Main.java` and `packages/java/README.md`; the client requires Jackson on the classpath.
