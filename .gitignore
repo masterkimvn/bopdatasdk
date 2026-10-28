@@ -1,0 +1,37 @@
+# BOP Data SDK — public repository exclusions
+# /work is a LOCAL-ONLY Codex execution folder. Never commit it.
+/work/
+/.work/
+/.internal/
+
+# Local credentials and machine-specific state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc.local
+
+# Dependencies and build/test output
+node_modules/
+vendor/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+coverage/
+.nyc_output/
+*.egg-info/
+*.log
+.DS_Store
+
+# NOTE: gitignore does not protect files already committed.
+# Verify with: git check-ignore -v work/START_HERE.md
+# Verify no tracked files: git ls-files work
