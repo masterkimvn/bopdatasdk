@@ -1,4 +1,4 @@
-use bop_data_sdk_local::Client;
+use bop_data_sdk::Client;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = Client::default();
     let catalog = client.list_datasets()?;

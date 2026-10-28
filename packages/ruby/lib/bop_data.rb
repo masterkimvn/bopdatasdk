@@ -31,7 +31,7 @@ module BopData
         http.use_ssl = uri.scheme == 'https'
         http.open_timeout = @timeout
         http.read_timeout = @timeout
-        response = http.request(Net::HTTP::Get.new(uri.request_uri, 'User-Agent' => 'BOPDataSDK/0.1'))
+        response = http.request(Net::HTTP::Get.new(uri.request_uri, 'User-Agent' => 'BOPDataSDK/1.0'))
       rescue Net::OpenTimeout, Net::ReadTimeout, Timeout::Error
         raise Error.new(:timeout)
       rescue IOError, SystemCallError, SocketError, OpenSSL::SSL::SSLError

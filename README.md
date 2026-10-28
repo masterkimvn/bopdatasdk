@@ -25,7 +25,7 @@
 
 **GitHub source release:** [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0) · [Changelog](CHANGELOG.md) · [Release notes](docs/releases/v1.0.0.md)
 
-> **Version scope:** v1.0.0 is the GitHub **source repository** release. The 11 language package manifests still use local/development versions and names; packages are **not yet distributed through public registries**. The SDK source license remains to be finalized. See [release and licensing details](docs/releasing.md).
+> **Version scope:** v1.0.0 is the GitHub **source repository** release. The 11 language packages have been prepared for distribution, but **registry availability is not yet confirmed**. SDK code is MIT licensed; dataset rights are separate. See [release and licensing details](docs/releasing.md).
 
 ## What is BOP Data?
 
@@ -101,7 +101,7 @@ PYTHONPATH=packages/python/src python3 examples/python/main.py
 
 These examples make real requests to `data.bop.ink` and require a network connection. For installation from source, dependencies, and language-specific usage, read **[Using the clients](docs/clients.md)**.
 
-> **Package status:** clients are available as source code in this repository. They have **not** been published to public package registries; package names and the SDK source license await final approval. Do not assume the example package names are installable from npm, PyPI, NuGet, Maven Central, or other registries.
+> **Package status:** package manifests are being prepared for external registries. Do not assume any package is published until verified; registry publication still requires account setup and verification. Do not assume the example package names are installable from npm, PyPI, NuGet, Maven Central, or other registries.
 
 ## Supported languages
 
@@ -175,3 +175,7 @@ This acknowledgement request is distinct from legal licensing obligations. Indiv
 - [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 **Find → See → Done.** Get the data into your project, then get back to building.
+
+## Registry package distribution
+
+Each language SDK has an independent distribution identity and packaging process. **Preparation is not publication**: see [registry checklist](docs/registry-status.md) for actual availability and ownership setup. SDK software is [MIT licensed](LICENSE), separate from dataset rights; see [license scope](docs/license-scope.md).

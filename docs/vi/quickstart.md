@@ -24,3 +24,8 @@ SDK chỉ giúp **gọi API → nhận dữ liệu → trả về ứng dụng**
 Khi sử dụng dữ liệu, vui lòng ghi nhận nguồn **BOP Data** (không bắt buộc gắn liên kết cho lời ghi nhận đơn giản này). Riêng điều khoản, giấy phép và nghĩa vụ ghi công của từng dataset hoặc nguồn gốc vẫn cần được tuân thủ. Giấy phép mã nguồn SDK chưa được xác nhận, nên không mặc định quyền tái phân phối chỉ vì code public.
 
 **Người sáng lập:** Phạm Hoàng Đức (Master Kim) — [about.bop.ink](https://about.bop.ink).
+
+
+## Phát hành package
+
+Các package đã được chuẩn bị tên và metadata để đăng lên từng kho phần mềm, nhưng **chưa xác nhận đã xuất bản thực tế**. Xem [trạng thái phân phối](../registry-status.md). Mã nguồn SDK dùng MIT; giấy phép dataset độc lập.

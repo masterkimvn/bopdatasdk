@@ -1,4 +1,4 @@
-import 'package:bop_data_sdk_local/bop_data.dart';
+import 'package:bop_data_sdk/bop_data.dart';
 
 Future<void> main() async {
   final c = BopDataClient();
