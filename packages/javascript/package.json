@@ -1,0 +1,1 @@
+{"name":"bop-data-sdk-local","version":"0.1.0","type":"module","files":["index.js","index.d.ts"],"exports":{".":{"types":"./index.d.ts","import":"./index.js"}},"scripts":{"test":"node --test test.js","build":"node --check index.js"},"engines":{"node":">=18"},"private":true}
