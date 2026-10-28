@@ -30,3 +30,5 @@ Framework integration snippets are available for [React](../examples/react/READM
 - Flutter: see [the app example](../examples/flutter/README.md).
 
 - Kotlin: see `examples/kotlin/Main.kt` and [package instructions](../packages/kotlin/README.md). Android applications should make network calls on a background thread.
+
+- Swift: add `packages/swift` as a local package and use the view in `examples/swift/DatasetView.swift`. iOS simulator operation is not yet verified.

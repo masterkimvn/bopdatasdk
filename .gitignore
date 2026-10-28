@@ -44,3 +44,4 @@ target/
 *.nupkg
 .dart_tool/
 .pub/
+.build/

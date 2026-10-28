@@ -14,11 +14,13 @@ class Stub : HttpMessageHandler {
 }
 class Program {
  static async Task Main() {
-  using var transport = new HttpClient(new Stub()); using var c = new Client("http://localhost", TimeSpan.FromMilliseconds(50), transport);
+  using var transport = new HttpClient(new Stub()); using var c = new Client("http://localhost", TimeSpan.FromSeconds(5), transport);
   if ((await c.ListDatasetsAsync()).GetProperty("total").GetInt32()!=2) throw new Exception("catalog");
   var d=await c.GetDatasetAsync("test.one"); if (d.GetProperty("provenance").GetProperty("license").GetString()!="synthetic" || d.GetProperty("freshness").GetProperty("lastUpdated").ValueKind!=System.Text.Json.JsonValueKind.Null) throw new Exception("metadata");
   if (!(await c.GetDatasetCsvAsync("test.one")).AsSpan().StartsWith(new byte[]{0xef,0xbb,0xbf})) throw new Exception("csv");
-  foreach(var id in new[]{"", "a/b", "abc\n", "đxx", "missing", "invalid", "wrong", "slow"}) { try { await c.GetDatasetAsync(id); throw new Exception("accepted " + id); } catch(BopDataException) {} }
+  foreach(var id in new[]{"", "a/b", "abc\n", "đxx", "missing", "invalid", "wrong"}) { try { await c.GetDatasetAsync(id); throw new Exception("accepted " + id); } catch(BopDataException) {} }
+  using var shortTimeout = new Client("http://localhost", TimeSpan.FromMilliseconds(50), transport);
+  try { await shortTimeout.GetDatasetAsync("slow"); throw new Exception("timeout accepted"); } catch (BopDataException e) when (e.Kind == "timeout") {}
   Console.WriteLine(".NET contract passed");
  }
 }
