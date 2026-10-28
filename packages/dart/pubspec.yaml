@@ -1,7 +1,9 @@
-name: bop_data_sdk_local
-description: Read-only BOP Data client under development.
-version: 0.1.0
-publish_to: none
+name: bop_data_sdk
+description: Lightweight read-only Dart and Flutter SDK for public structured datasets from BOP Data.
+version: 1.0.0
+homepage: https://data.bop.ink
+repository: https://github.com/masterkimvn/bopdatasdk
+issue_tracker: https://github.com/masterkimvn/bopdatasdk/issues
 environment:
   sdk: '>=3.3.0 <4.0.0'
 dependencies:

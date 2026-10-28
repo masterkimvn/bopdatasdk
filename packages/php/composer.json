@@ -1,7 +1,21 @@
 {
-  "name": "bopink/data-sdk-local",
-  "description": "Read-only BOP Data client",
+  "name": "bopink/data-sdk",
+  "description": "Read-only PHP client for BOP Data public structured datasets",
   "type": "library",
+  "license": "MIT",
+  "homepage": "https://data.bop.ink",
+  "authors": [
+    {
+      "name": "Phạm Hoàng Đức (Master Kim)",
+      "homepage": "https://about.bop.ink"
+    }
+  ],
+  "keywords": [
+    "bop-data",
+    "datasets",
+    "structured-data",
+    "csv"
+  ],
   "require": {
     "php": ">=8.1",
     "ext-curl": "*",
@@ -11,6 +25,10 @@
     "psr-4": {
       "BopData\\": "src/"
     }
+  },
+  "support": {
+    "source": "https://github.com/masterkimvn/bopdatasdk",
+    "issues": "https://github.com/masterkimvn/bopdatasdk/issues"
   },
   "archive": {
     "exclude": [

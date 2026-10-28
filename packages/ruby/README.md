@@ -1,3 +1,12 @@
-# Ruby client
+# BOP Data SDK for Ruby
 
-The Ruby package is under development and is not published. Build locally with `gem build bop_data_sdk.gemspec`, then install the resulting gem into a local Ruby environment. Require `bop_data` and instantiate `BopData::Client`; see `examples/ruby/main.rb` in the repository. `list_datasets`, `get_dataset(id)`, and `get_dataset_csv(id)` perform read-only requests. The last method returns UTF-8 CSV including any BOM. Errors use `BopData::Error` with `kind` and optional HTTP `status`.
+Read-only SDK for [BOP Data](https://data.bop.ink). After RubyGems publication: `gem install bop-data-sdk`.
+
+```ruby
+require 'bop_data'
+client = BopData::Client.new
+catalog = client.list_datasets
+p client.get_dataset(catalog['datasets'][0]['canonicalId'])['data']
+```
+
+SDK MIT. Please credit source data as **BOP Data**, respecting original dataset terms.

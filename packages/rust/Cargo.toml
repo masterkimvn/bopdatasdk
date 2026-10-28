@@ -1,9 +1,15 @@
 [package]
-name = "bop-data-sdk-local"
-version = "0.1.0"
+name = "bop-data-sdk"
+version = "1.0.0"
 edition = "2021"
-publish = false
-description = "Read-only client for BOP Data"
+license = "MIT"
+description = "Read-only Rust client for BOP Data public structured datasets"
+readme = "README.md"
+repository = "https://github.com/masterkimvn/bopdatasdk"
+homepage = "https://data.bop.ink"
+keywords = ["datasets", "csv", "bop", "api"]
+categories = ["api-bindings"]
+
 [dependencies]
 reqwest = { version = "0.11", default-features = false, features = ["blocking", "rustls-tls"] }
 serde_json = "1"
