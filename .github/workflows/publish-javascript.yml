@@ -1,0 +1,37 @@
+name: Publish JavaScript SDK to npm
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type PUBLISH after setting up npm package ownership and Trusted Publisher
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  npm:
+    if: github.repository == 'masterkimvn/bopdatasdk' && github.ref == 'refs/heads/main' && inputs.confirm == 'PUBLISH'
+    runs-on: ubuntu-latest
+    environment: registry-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check and pack npm package
+        working-directory: packages/javascript
+        run: |
+          test "$(node -p 'require("./package.json").name')" = "bop-data-sdk"
+          test "$(node -p 'require("./package.json").version')" = "1.0.0"
+          npm test
+          npm run build
+          npm pack --dry-run
+      - name: Publish with npm Trusted Publishing
+        working-directory: packages/javascript
+        run: npm publish --access public

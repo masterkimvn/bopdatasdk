@@ -1,0 +1,30 @@
+name: Publish .NET SDK to NuGet
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Type PUBLISH after creating NuGet account and package-scoped API key
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  nuget:
+    if: github.repository == 'masterkimvn/bopdatasdk' && github.ref == 'refs/heads/main' && inputs.confirm == 'PUBLISH'
+    environment: registry-publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run --project packages/dotnet/ContractTests/ContractTests.csproj
+      - run: dotnet pack packages/dotnet/BopData/BopData.csproj -c Release -o /tmp/bop-nuget
+      - name: Publish NuGet package
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          test -n "$NUGET_API_KEY" || { echo "NUGET_API_KEY missing"; exit 1; }
+          dotnet nuget push /tmp/bop-nuget/*.nupkg --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
