@@ -21,7 +21,7 @@ class Contract(unittest.TestCase):
  @classmethod
  def tearDownClass(cls): cls.server.shutdown(); cls.server.server_close()
  def test_contract(self):
-  self.assertEqual(self.client.list_datasets()['total'],2); self.assertEqual(self.client.get_dataset('test.one')['future'],'preserved'); self.assertTrue(self.client.get_dataset_csv('test.one').startswith('\ufeff'))
+  self.assertEqual(self.client.list_datasets()['total'],2); self.assertEqual(self.client.get_dataset('test.one')['future'],'preserved'); self.assertEqual(self.client.get_dataset_csv('test.one'), '\ufeffa,b\r\n'); self.assertIsNone(self.client.get_dataset('test.one')['freshness']['lastUpdated']); self.assertEqual(self.client.get_dataset('test.one')['provenance']['license'], 'synthetic')
   for value in ('','a/b','https://x','đxx'):
    with self.assertRaises(BopDataError): self.client.get_dataset(value)
   with self.assertRaises(BopDataError) as e: self.client.get_dataset('missing')

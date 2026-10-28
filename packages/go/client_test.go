@@ -2,10 +2,13 @@ package bopdata
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestContract(t *testing.T) {
@@ -37,8 +40,12 @@ func TestContract(t *testing.T) {
 	if e != nil || string(d["future"]) != `"preserved"` {
 		t.Fatal(e)
 	}
-	if _, e = c.GetDatasetCSV(ctx, "test.one"); e != nil {
-		t.Fatal(e)
+	csv, e := c.GetDatasetCSV(ctx, "test.one")
+	if e != nil || string(csv) != "\xef\xbb\xbfa,b\r\n" {
+		t.Fatalf("CSV: %q %v", csv, e)
+	}
+	if !strings.Contains(string(d["freshness"]), "lastUpdated") || !strings.Contains(string(d["provenance"]), "synthetic") {
+		t.Fatal("metadata missing")
 	}
 	for _, id := range []string{"", "a/b", "https://x", "đxx", "missing"} {
 		if _, e = c.GetDataset(ctx, id); e == nil {
@@ -74,7 +81,12 @@ func TestErrorsAndCancellation(t *testing.T) {
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	cancel()
-	if _, err := c.GetDataset(ctx, "slow"); err == nil {
-		t.Fatal("cancellation accepted")
+	if _, err := c.GetDataset(ctx, "slow"); !errors.Is(err, context.Canceled) {
+		t.Fatal("cancellation", err)
+	}
+	ctx2, cancel2 := context.WithTimeout(context.Background(), 20*time.Millisecond)
+	defer cancel2()
+	if _, err := c.GetDataset(ctx2, "slow"); !errors.Is(err, context.DeadlineExceeded) {
+		t.Fatal("timeout", err)
 	}
 }
