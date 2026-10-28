@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use BOP Data datasets, please credit the data source as BOP Data. This citation refers to the SDK source repository; dataset-specific terms remain separate."
+title: "BOP Data SDK"
+type: software
+authors:
+  - family-names: "Phạm"
+    given-names: "Hoàng Đức"
+    affiliation: "BOP"
+version: "1.0.0"
+date-released: "2026-10-28"
+url: "https://data.bop.ink"
+repository-code: "https://github.com/masterkimvn/bopdatasdk"
+abstract: "Lightweight read-only API connectors for integrating public BOP Data structured datasets into websites, software, mobile apps, and AI."
