@@ -13,3 +13,7 @@ test('timeout and metadata', async () => {
  const c = new BopDataClient({fetch: async () => new Response(dataset)}); const d = await c.getDataset('test.one');
  assert.equal(d.freshness.lastUpdated, null); assert.equal(d.provenance.license, 'synthetic');
 });
+test('timeout while reading response body', async () => {
+ const client = new BopDataClient({timeoutMs:10, fetch: async (_url, {signal}) => ({ok:true, arrayBuffer: () => new Promise((_resolve, reject) => signal.addEventListener('abort', () => reject(new Error('aborted'))))})});
+ await assert.rejects(client.getDatasetCsv('test.one'), e => e.kind === 'timeout');
+});
