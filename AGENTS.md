@@ -12,7 +12,7 @@ Public guidance for AI coding agents working **with or inside** the [BOP Data SD
 
 ## Current release status
 
-The repository's first GitHub **source release** is [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0). This version refers to the repository snapshot, **not** independent package releases. Local package manifests may still report `0.1.0`, `*-local`, or `-SNAPSHOT`; none of those names should be presented as publicly available registry packages. SDK software is MIT licensed; individual dataset rights are separate. See [CHANGELOG.md](CHANGELOG.md) and [docs/releasing.md](docs/releasing.md).
+The repository's first GitHub **source release** is [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0). This version refers to the repository snapshot, **not** independent package releases. That historical tag contains development package identifiers. The later distribution branch proposes independent 1.0.0 package manifests; no registry package should be assumed published until verified. SDK software is MIT licensed; individual dataset rights are separate. See [CHANGELOG.md](CHANGELOG.md) and [docs/releasing.md](docs/releasing.md).
 
 ## When a user asks you to integrate BOP Data
 

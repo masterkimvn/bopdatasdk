@@ -12,9 +12,7 @@ license = "MIT"
 authors = [{name = "Phạm Hoàng Đức (Master Kim)"}]
 keywords = ["bop-data", "datasets", "structured-data", "csv"]
 classifiers = [
- "Programming Language :: Python :: 3",
- "License :: OSI Approved :: MIT License",
- "Operating System :: OS Independent"
+ "Programming Language :: Python :: 3", "Operating System :: OS Independent"
 ]
 
 [project.urls]
