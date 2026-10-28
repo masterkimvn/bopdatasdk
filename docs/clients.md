@@ -2,6 +2,8 @@
 
 All clients call the public BOP Data API. Discover a `canonicalId` with the catalog, then request its JSON dataset or CSV. The dataset includes `data`, `freshness`, `provenance` and `links` when supplied by the API. JSON is returned without flattening the fields; CSV is returned as text or bytes, depending on the language. Check the data's own terms before redistribution.
 
+The repository has a [v1.0.0 GitHub source release](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0). This is a versioned snapshot of all clients, **not** a publication of individual packages to language registries. Their current local package names and versions remain independent.
+
 The packages below are development source in this repository, not published registry releases. Names and versions are temporary. Run commands from the repository root unless stated otherwise. A custom base URL is for trusted deployments and tests. No API key is required.
 
 | Language | Catalog | Dataset JSON | CSV |
