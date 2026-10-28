@@ -2,7 +2,7 @@
 
 Lightweight read-only clients for public datasets from [BOP Data](https://data.bop.ink). Discover datasets through the [catalog](https://data.bop.ink/api/v1/datasets.json) and inspect the [API specification](https://data.bop.ink/openapi.json).
 
-JavaScript, Python, PHP, Go, Java and Ruby clients are available in this repository as development source. Packages have not been released; registry names and the source license are pending approval. The examples below run from a checkout. Requirements: Node 18+, Python 3.9+, PHP 8.1+ with cURL, Go 1.21+, Java 11+, or Ruby 3.0+.
+JavaScript, Python, PHP, Go, Java, Ruby and Rust clients are available in this repository as development source. Packages have not been released; registry names and the source license are pending approval. The examples below run from a checkout. Requirements: Node 18+, Python 3.9+, PHP 8.1+ with cURL, Go 1.21+, Java 11+, Ruby 3.0+, or a current stable Rust toolchain.
 
 Choose a canonical ID from the catalog. For example, `vn.vien-thong-ha-tang-so.ten-mien-ip-asn.danh-sach-asn-viet-nam` identifies [this dataset](https://data.bop.ink/vien-thong-ha-tang-so/ten-mien-ip-asn/danh-sach-asn-viet-nam); its human URL is provided by `links.html`.
 

@@ -101,3 +101,12 @@ jobs:
           java-version: '11'
       - run: mvn -B test package
         working-directory: packages/java
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - run: cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test && cargo package --allow-dirty
+        working-directory: packages/rust

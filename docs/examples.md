@@ -17,3 +17,6 @@ Additional source examples:
 - C++: `c++ -std=c++17 examples/cpp/dataset.cpp -lcurl -o dataset-cpp` then `./dataset-cpp CANONICAL_ID json` (or `csv`). Requires libcurl headers and library.
 
 - Java: see `examples/java/Main.java` and `packages/java/README.md`; the client requires Jackson on the classpath.
+
+- Rust: `cargo run --manifest-path packages/rust/Cargo.toml --example dataset`.
+- R: install `jsonlite`, then run `Rscript examples/r/dataset.R`.
