@@ -23,6 +23,10 @@
   <a href="https://github.com/masterkimvn/bopdatasdk/actions/workflows/ci.yml"><img src="https://github.com/masterkimvn/bopdatasdk/actions/workflows/ci.yml/badge.svg" alt="GitHub Actions CI"></a>
 </p>
 
+**GitHub source release:** [v1.0.0](https://github.com/masterkimvn/bopdatasdk/releases/tag/v1.0.0) · [Changelog](CHANGELOG.md) · [Release notes](docs/releases/v1.0.0.md)
+
+> **Version scope:** v1.0.0 is the GitHub **source repository** release. The 11 language package manifests still use local/development versions and names; packages are **not yet distributed through public registries**. The SDK source license remains to be finalized. See [release and licensing details](docs/releasing.md).
+
 ## What is BOP Data?
 
 **[BOP Data](https://data.bop.ink)** is a **non-profit, ad-free public structured data initiative** within the [BOP ecosystem](https://bop.ink). It makes structured datasets accessible to people, websites, software, mobile applications, and AI systems.
