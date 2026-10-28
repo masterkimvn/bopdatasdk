@@ -137,3 +137,14 @@ jobs:
           channel: stable
       - run: flutter pub get && flutter analyze && flutter test
         working-directory: examples/flutter
+  kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y kotlin libandroid-json-java
+      - run: |
+          kotlinc packages/kotlin/src/main/kotlin/ink/bop/data/BopDataClient.kt -cp /usr/share/java/com.android.json.jar -d /tmp/bop-kotlin.jar
+          kotlinc packages/kotlin/src/test/kotlin/Smoke.kt -cp /tmp/bop-kotlin.jar:/usr/share/java/com.android.json.jar -d /tmp/bop-test.jar
+          php -S 127.0.0.1:18765 tests/server.php >/tmp/bop-server.log 2>&1 &
+          sleep 1
+          kotlin -cp /tmp/bop-test.jar:/tmp/bop-kotlin.jar:/usr/share/java/com.android.json.jar SmokeKt

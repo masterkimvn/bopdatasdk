@@ -28,3 +28,5 @@ Additional source examples:
 Framework integration snippets are available for [React](../examples/react/README.md), [Vue](../examples/vue/README.md), [Next.js](../examples/nextjs/README.md) and [React Native](../examples/react-native/README.md). Install the local JavaScript package into your application first. The browser examples depend on API CORS policy; React Native device compatibility remains unverified.
 
 - Flutter: see [the app example](../examples/flutter/README.md).
+
+- Kotlin: see `examples/kotlin/Main.kt` and [package instructions](../packages/kotlin/README.md). Android applications should make network calls on a background thread.
