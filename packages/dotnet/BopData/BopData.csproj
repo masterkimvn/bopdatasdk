@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net8.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><PackageId>BopData.SDK.Local</PackageId><Version>0.1.0</Version><Description>Read-only BOP Data client</Description></PropertyGroup>
+</Project>

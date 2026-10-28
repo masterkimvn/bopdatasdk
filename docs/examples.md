@@ -20,3 +20,5 @@ Additional source examples:
 
 - Rust: `cargo run --manifest-path packages/rust/Cargo.toml --example dataset`.
 - R: install `jsonlite`, then run `Rscript examples/r/dataset.R`.
+
+- .NET: `dotnet run --project examples/dotnet/Demo.csproj` requires .NET 8.

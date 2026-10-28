@@ -110,3 +110,12 @@ jobs:
           components: rustfmt, clippy
       - run: cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test && cargo package --allow-dirty
         working-directory: packages/rust
+  dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet run --project ContractTests/ContractTests.csproj && dotnet pack BopData/BopData.csproj
+        working-directory: packages/dotnet

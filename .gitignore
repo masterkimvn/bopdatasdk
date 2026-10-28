@@ -39,3 +39,6 @@ coverage/
 # Build output for additional language packages
 target/
 *.gem
+**/bin/
+**/obj/
+*.nupkg
