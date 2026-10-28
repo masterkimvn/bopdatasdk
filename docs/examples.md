@@ -26,3 +26,5 @@ Additional source examples:
 - Dart: `cd packages/dart && dart pub get && dart run example/main.dart`.
 
 Framework integration snippets are available for [React](../examples/react/README.md), [Vue](../examples/vue/README.md), [Next.js](../examples/nextjs/README.md) and [React Native](../examples/react-native/README.md). Install the local JavaScript package into your application first. The browser examples depend on API CORS policy; React Native device compatibility remains unverified.
+
+- Flutter: see [the app example](../examples/flutter/README.md).

@@ -128,3 +128,12 @@ jobs:
           sdk: stable
       - run: dart pub get && dart analyze && dart test
         working-directory: packages/dart
+  flutter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get && flutter analyze && flutter test
+        working-directory: examples/flutter
