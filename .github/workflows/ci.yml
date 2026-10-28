@@ -85,6 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
       - run: |
           gcc -Wall -Wextra -Werror examples/c/dataset.c -lcurl -o /tmp/bop-c
           g++ -std=c++17 -Wall -Wextra -Werror examples/cpp/dataset.cpp -lcurl -o /tmp/bop-cpp
