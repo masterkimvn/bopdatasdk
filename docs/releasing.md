@@ -1,7 +1,38 @@
-# Release preparation
+# Release and distribution
 
-The clients are not published. Package names, namespace ownership, license and copyright holder must be confirmed before release. Version numbers may be managed independently. Do not publish or create tags until the release and its destinations are approved.
+## Current GitHub source release
 
-Build and inspect the JavaScript tarball with `npm pack --dry-run` in `packages/javascript`; build the Python wheel and source distribution with `python -m build` in `packages/python`. Validate the PHP package with Composer. Run `go test ./...` and `go vet ./...` in `packages/go`. Install artifacts into clean consumer projects and inspect their contents before publication. The Go module's version tag must have the prefix `packages/go/`, for example `packages/go/v0.1.0`.
+**Repository version:** v1.0.0 (2026-10-28). See [Changelog](../CHANGELOG.md) and [GitHub release notes](releases/v1.0.0.md).
 
-Configure registry trusted publishing according to current registry documentation and grant identity permissions only to the publishing job. After an approved release, verify installation from each public registry. Dataset rights remain separate from the SDK license.
+The GitHub release is a **source-code snapshot** with eleven read-only BOP Data clients, examples, tests, and documentation. It is **not** a release to public language package registries, and it does not deploy or change the production API at `data.bop.ink`.
+
+The existing package manifests deliberately retain local/development names and version numbers. Repository tag `v1.0.0` **does not** change the language-specific package version values, imply registry availability, or certify untested mobile builds.
+
+## Get the tagged source
+
+```bash
+git clone --branch v1.0.0 --depth 1 https://github.com/masterkimvn/bopdatasdk.git
+cd bopdatasdk
+```
+
+Use [client installation instructions](clients.md) and [examples](examples.md) to run a client locally. No BOP Data API key is needed.
+
+## CI and GitHub release
+
+The v1.0.0 GitHub release is created only after the `CI` workflow passes for the main-branch source commit. The one-time release workflow checks that the successful CI commit is the current `main` head before creating the tag and release.
+
+For later releases, update `CHANGELOG.md`, the release notes, and the repository version first; run and confirm CI, then use an explicitly approved release procedure. Do not assume the v1.0.0 one-time workflow handles future versions.
+
+## Separate approval required before public registry publication
+
+- Final SDK source license and copyright information. **No public-use license is granted merely by source visibility.**
+- Package names/namespaces and ownership for each target registry.
+- Individual package versioning, package metadata, and integrity checks.
+- Registry authentication and narrowly scoped publishing permissions.
+- Installation and smoke checks from each registry after publication.
+
+Build and inspect source packages independently: `npm pack --dry-run` (JavaScript), `python -m build` (Python), Composer validation (PHP), `go test ./...` and `go vet ./...` (Go), plus each other language's documented checks. Validate package artifacts in clean consumer environments before registry publication.
+
+For a Go release, the nested module may require its own appropriately prefixed tag, e.g. `packages/go/v1.0.0`. The root `v1.0.0` tag does **not** publish that Go module version.
+
+SDK source rights are separate from the rights associated with any dataset's content and original sources. Read [data rights](data-rights.md).
