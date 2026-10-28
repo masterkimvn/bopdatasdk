@@ -22,3 +22,5 @@ Additional source examples:
 - R: install `jsonlite`, then run `Rscript examples/r/dataset.R`.
 
 - .NET: `dotnet run --project examples/dotnet/Demo.csproj` requires .NET 8.
+
+- Dart: `cd packages/dart && dart pub get && dart run example/main.dart`.

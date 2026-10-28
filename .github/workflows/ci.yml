@@ -119,3 +119,12 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet run --project ContractTests/ContractTests.csproj && dotnet pack BopData/BopData.csproj
         working-directory: packages/dotnet
+  dart:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get && dart analyze && dart test
+        working-directory: packages/dart

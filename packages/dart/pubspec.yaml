@@ -1,0 +1,10 @@
+name: bop_data_sdk_local
+description: Read-only BOP Data client under development.
+version: 0.1.0
+publish_to: none
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+dependencies:
+  http: ^1.2.0
+dev_dependencies:
+  test: ^1.25.0

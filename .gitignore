@@ -42,3 +42,5 @@ target/
 **/bin/
 **/obj/
 *.nupkg
+.dart_tool/
+.pub/
