@@ -1,6 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion><groupId>ink.bop</groupId><artifactId>data-kotlin-local</artifactId><version>0.1.0-SNAPSHOT</version><name>BOP Data Kotlin client (local)</name>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ink.bop</groupId><artifactId>data-kotlin</artifactId><version>1.0.0</version>
+  <name>BOP Data SDK — Kotlin</name>
+  <description>Read-only Kotlin API client for BOP Data public structured datasets.</description>
+  <url>https://data.bop.ink</url>
+  <licenses><license><name>MIT License</name><url>https://github.com/masterkimvn/bopdatasdk/blob/main/LICENSE</url></license></licenses>
+  <developers><developer><name>Phạm Hoàng Đức (Master Kim)</name><url>https://about.bop.ink</url></developer></developers>
+  <scm><connection>scm:git:https://github.com/masterkimvn/bopdatasdk.git</connection><developerConnection>scm:git:https://github.com/masterkimvn/bopdatasdk.git</developerConnection><url>https://github.com/masterkimvn/bopdatasdk</url></scm>
   <properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><kotlin.version>1.9.25</kotlin.version></properties>
-  <dependencies><dependency><groupId>org.jetbrains.kotlin</groupId><artifactId>kotlin-stdlib</artifactId><version>${kotlin.version}</version></dependency><dependency><groupId>org.json</groupId><artifactId>json</artifactId><version>20240303</version><scope>provided</scope></dependency></dependencies>
+  <dependencies><dependency><groupId>org.jetbrains.kotlin</groupId><artifactId>kotlin-stdlib</artifactId><version>${kotlin.version}</version></dependency>
+<dependency><groupId>org.json</groupId><artifactId>json</artifactId><version>20240303</version><scope>provided</scope></dependency></dependencies>
   <build><sourceDirectory>src/main/kotlin</sourceDirectory><plugins><plugin><groupId>org.jetbrains.kotlin</groupId><artifactId>kotlin-maven-plugin</artifactId><version>${kotlin.version}</version><executions><execution><id>compile</id><goals><goal>compile</goal></goals><configuration><jvmTarget>1.8</jvmTarget></configuration></execution></executions></plugin></plugins></build>
+  <profiles><profile><id>central-release</id><build><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.1</version><executions><execution><id>sources</id><goals><goal>jar-no-fork</goal></goals></execution></executions></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.11.2</version><executions><execution><id>javadocs</id><goals><goal>jar</goal></goals></execution></executions></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-gpg-plugin</artifactId><version>3.2.7</version><executions><execution><id>sign</id><phase>verify</phase><goals><goal>sign</goal></goals></execution></executions></plugin>
+    <plugin><groupId>org.sonatype.central</groupId><artifactId>central-publishing-maven-plugin</artifactId><version>0.12.0</version><extensions>true</extensions><configuration><publishingServerId>central</publishingServerId><autoPublish>false</autoPublish></configuration></plugin>
+  </plugins></build></profile></profiles>
 </project>
